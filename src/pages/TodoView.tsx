@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import Home from "./Home";
-
+// 컴포넌트에서 받을 인자를 타입으로 정의
 type TodoViewProps = { name: string };
 
+// 인터페이스로 정의하는 방법
+// interface TodoViewProps {
+//   name: string;
+// }
+
 function TodoView(props: TodoViewProps) {
-  // const [count, setCount] = useState(0);
-
-  // console.log("props:", props.name);
-
   return (
     <div>
-      <div>
-        {/* <textarea value={props.name}></textarea> */}
-        {props.name}
-      </div>
+      {/* 문자열은 화면에 바로 출력 가능함 */}
+      {props.name}
     </div>
   );
 }
