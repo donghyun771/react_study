@@ -33,7 +33,7 @@ function Home() {
       <br />
       {/* map메소드로 데이터 배열을 돌면서 데이터를 화면에 출력함 */}
       {todoView.map((todo) => (
-        <TodoView name={todo} key={todo} />
+        <TodoView id={1} name={todo} />
       ))}
     </div>
   );
