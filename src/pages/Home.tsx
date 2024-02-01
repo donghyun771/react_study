@@ -15,10 +15,14 @@ function Home() {
 
     const todo = [...todoView]
 
-    console.log(todo[todo.length-1].id + 1)
+    // console.log(todo[todo.length-1].id + 1)
 
     // 이전 상태값과 현재 입력값을 합친 배열을 set
-    setTodoView([...todoView , {id : todo[todo.length-1].id + 1, name : todoContent}]);
+    if (todoView.length === 0) {
+      setTodoView([...todoView , {id : 1, name : todoContent}]);
+    } else {
+      setTodoView([...todoView , {id : todo[todo.length-1].id + 1, name : todoContent}]);
+    }
     // 입력 필드 비우기
     setTodoContent("");
   }, [todoContent, todoView]);
