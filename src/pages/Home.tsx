@@ -10,6 +10,8 @@ function Home() {
   const [todoContent, setTodoContent] = useState("");
   // const [todoView, setTodoView] = useState<string[]>([]);
   const [todoView, setTodoView] = useState<TodoProps[]>([]);
+  // const [editingId, setEditingId] = useState<undefined | number>(undefined);
+  const [modifyId, setModifyId] = useState<number>();
 
   const addTodoView = useCallback(() => {
     const todo = [...todoView];
@@ -36,6 +38,18 @@ function Home() {
     },
     [todoView]
   );
+
+  const modifyTodo = useCallback((id: number, data: string) => {
+    setTodoView((prev) => {
+      let newTodoView = prev;
+      const replaceIdx = newTodoView.findIndex((todo) => todo.id === id);
+
+      newTodoView[replaceIdx] = { id: id, name: data };
+
+      return newTodoView;
+    });
+    setModifyId(undefined);
+  }, []);
 
   return (
     <div>
@@ -66,7 +80,10 @@ function Home() {
           key={todo.id}
           id={todo.id}
           name={todo.name}
+          isEditable={todo.id === modifyId}
           onDelete={todoDelete}
+          onModify={setModifyId}
+          onSave={modifyTodo}
         />
       ))}
     </div>
